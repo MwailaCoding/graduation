@@ -40,19 +40,19 @@ function getMetadataBase(): URL {
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
   title: {
-    default: "Majala & Florence — Graduation & Thanksgiving Celebration",
-    template: "%s | Majala & Florence",
+    default: "Majala & Achala — Graduation & Thanksgiving Celebration",
+    template: "%s | Majala & Achala",
   },
   description:
-    "You are cordially invited to the Graduation & Thanksgiving Celebration of Majala Mwaila and Florence Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort.",
+    "You are cordially invited to the Graduation & Thanksgiving Celebration of Majala Mwaila and Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort.",
   applicationName: "Mwaila Graduation Celebration",
-  authors: [{ name: "Majala Mwaila" }, { name: "Florence Achala Mwaila" }],
+  authors: [{ name: "Majala Mwaila" }, { name: "Achala Mwaila" }],
   creator: "Mwaila Family",
   keywords: [
     "Graduation",
     "Thanksgiving",
     "Majala Mwaila",
-    "Florence Achala Mwaila",
+    "Achala Mwaila",
     "Rainbow Ruiru Resort",
     "Celebration",
     "RSVP",
@@ -61,25 +61,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_KE",
     url: "/",
-    siteName: "Majala & Florence Graduation & Thanksgiving",
-    title: "Majala & Florence — Graduation & Thanksgiving Celebration",
+    siteName: "Majala & Achala Graduation & Thanksgiving",
+    title: "Majala & Achala — Graduation & Thanksgiving Celebration",
     description:
-      "You are cordially invited to celebrate the Graduation & Thanksgiving of Majala Mwaila and Florence Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort. Tap to view details and RSVP.",
+      "You are cordially invited to celebrate the Graduation & Thanksgiving of Majala Mwaila and Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort. View invitation details and RSVP online.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Majala & Florence — Graduation & Thanksgiving Celebration",
+        alt: "Majala & Achala — Graduation & Thanksgiving Celebration",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Majala & Florence — Graduation & Thanksgiving Celebration",
+    title: "Majala & Achala — Graduation & Thanksgiving Celebration",
     description:
-      "You are cordially invited to celebrate the Graduation & Thanksgiving of Majala Mwaila and Florence Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort. Tap to view details and RSVP.",
+      "You are cordially invited to celebrate the Graduation & Thanksgiving of Majala Mwaila and Achala Mwaila on Saturday, 12 December 2026 at Rainbow Ruiru Resort. View invitation details and RSVP online.",
     images: ["/og-image.jpg"],
   },
   robots: {
