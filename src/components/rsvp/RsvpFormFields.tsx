@@ -500,7 +500,7 @@ export function RsvpFormFields({
             htmlFor={messageId}
             className="block font-sans text-sm font-semibold text-forest-green"
           >
-            Optional message to Majala &amp; Florence
+            Optional message to Majala &amp; Achala
           </label>
           <span
             aria-hidden="true"

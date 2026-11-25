@@ -268,7 +268,7 @@ export function RsvpManageClient({
             {savedRsvp.congratulatoryMessage ? (
               <div>
                 <dt className="text-xs font-semibold text-forest-green/75">
-                  Message to Majala &amp; Florence
+                  Message to Majala &amp; Achala
                 </dt>
                 <dd className="text-forest-green">
                   {savedRsvp.congratulatoryMessage}
