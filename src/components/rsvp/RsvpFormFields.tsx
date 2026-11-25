@@ -569,7 +569,13 @@ export function RsvpFormFields({
           <div className="mt-3.5 border-t border-champagne-gold/45 pt-3">
             <label
               htmlFor={privacyId}
-              className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-lg py-1.5"
+              className={`flex min-h-[52px] cursor-pointer items-start gap-3 rounded-xl border-2 p-3 transition-colors duration-150 ${
+                fieldErrors.privacyAcknowledged
+                  ? "border-[#8E2822] bg-[#8E2822]/10 ring-2 ring-[#8E2822]/30"
+                  : values.privacyAcknowledged
+                    ? "border-forest-green bg-forest-green/10"
+                    : "border-forest-green/40 bg-warm-ivory hover:border-forest-green"
+              }`}
             >
               <input
                 id={privacyId}
@@ -592,8 +598,8 @@ export function RsvpFormFields({
               />
               <span className="font-sans text-xs leading-relaxed font-medium text-forest-green sm:text-[0.8125rem]">
                 {PRIVACY_NOTICE_COPY.checkboxLabel}{" "}
-                <span aria-hidden="true" className="text-[#8E2822]">
-                  *
+                <span aria-hidden="true" className="font-bold text-[#8E2822]">
+                  * (Required)
                 </span>
               </span>
             </label>
@@ -601,7 +607,7 @@ export function RsvpFormFields({
               <p
                 id={privacyErrorId}
                 role="alert"
-                className="mt-1 font-sans text-xs font-medium text-[#8E2822]"
+                className="mt-1.5 font-sans text-xs font-semibold text-[#8E2822]"
               >
                 {fieldErrors.privacyAcknowledged}
               </p>

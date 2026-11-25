@@ -70,7 +70,10 @@ function focusFirstInvalidField(
   for (const item of order) {
     if (fieldErrors[item.key]) {
       const target = dialog.querySelector<HTMLElement>(item.selector);
-      target?.focus();
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+        target.focus();
+      }
       return;
     }
   }
@@ -489,6 +492,12 @@ export function RsvpSection({ isClosed = false }: RsvpSectionProps) {
                     onChange={handleFieldChange}
                     onClearFieldError={handleClearFieldError}
                   />
+
+                  {!values.privacyAcknowledged ? (
+                    <p className="flex items-center gap-1.5 rounded-lg border border-amber-600/30 bg-amber-50/80 px-3 py-2 font-sans text-xs font-semibold text-amber-900">
+                      <span aria-hidden="true">⚠️</span> Please check the required Privacy Notice box above before submitting.
+                    </p>
+                  ) : null}
 
                   <div className="flex flex-col-reverse gap-3 border-t border-champagne-gold/45 pt-4 sm:flex-row sm:items-center sm:justify-between">
                     <button
