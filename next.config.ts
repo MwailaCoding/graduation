@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Single-application Next.js App Router foundation (SSR + Route Handlers enabled; no static export)
-  output: "standalone",
   serverExternalPackages: ["pg"],
   async headers() {
     return [
