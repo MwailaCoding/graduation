@@ -1,0 +1,37 @@
+# dependencies
+node_modules
+npm-debug.log*
+
+# build output (we build inside Docker)
+.next
+out
+
+# version control
+.git
+.gitignore
+
+# environment (secrets injected at runtime, never baked in)
+.env
+.env.*
+!.env.example
+
+# dev / editor
+.vscode
+.idea
+*.swp
+*.swo
+
+# tests
+tests
+*.test.*
+*.spec.*
+
+# docs
+README.md
+AGENTS.md
+database/RETENTION_AND_BACKUPS.md
+
+# misc
+Dockerfile
+docker-compose*.yml
+.dockerignore

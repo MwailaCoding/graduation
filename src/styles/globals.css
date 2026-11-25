@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --color-warm-ivory: #F7F3EA;
+  --color-forest-green: #193C2F;
+  --color-soft-sage: #A5B29A;
+  --color-muted-olive: #77774D;
+  --color-champagne-gold: #C4A46C;
+  --color-warm-sand: #E8DED0;
+}
+
+@theme inline {
+  --font-serif: var(--font-playfair-display), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  --color-warm-ivory: #F7F3EA;
+  --color-forest-green: #193C2F;
+  --color-soft-sage: #A5B29A;
+  --color-muted-olive: #77774D;
+  --color-champagne-gold: #C4A46C;
+  --color-warm-sand: #E8DED0;
+
+  --color-background: var(--color-warm-ivory);
+  --color-foreground: var(--color-forest-green);
+  --color-surface: var(--color-warm-sand);
+  --color-muted: var(--color-muted-olive);
+  --color-accent: var(--color-champagne-gold);
+  --color-sage: var(--color-soft-sage);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background-color: var(--color-warm-ivory);
+  color: var(--color-forest-green);
+}
+
+.paper-texture {
+  background-color: var(--color-warm-ivory);
+  background-image:
+    linear-gradient(
+      rgba(247, 243, 234, 0.72),
+      rgba(247, 243, 234, 0.72)
+    ),
+    url("/assets/textures/ivory-paper.webp");
+  background-size: auto, 600px 400px;
+  background-repeat: repeat;
+}
