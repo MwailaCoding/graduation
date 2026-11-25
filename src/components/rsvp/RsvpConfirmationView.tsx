@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { EVENT_DETAILS } from "@/lib/event-config";
 import type { RsvpGuestSummary } from "@/types/rsvp";
 
@@ -10,6 +10,8 @@ export interface RsvpConfirmationViewProps {
   managementPath: string;
   onReturnToInvitation: () => void;
 }
+
+const emptySubscribe = () => () => {};
 
 /**
  * Celebration confirmation view shown inside the RSVP modal after submission.
@@ -20,13 +22,12 @@ export function RsvpConfirmationView({
   onReturnToInvitation,
 }: RsvpConfirmationViewProps) {
   const [copied, setCopied] = useState(false);
-  // SSR-safe: initialise with the relative path so SSR and first client
-  // render match, then upgrade to the absolute URL after mount.
-  const [fullManagementUrl, setFullManagementUrl] = useState(managementPath);
-
-  useEffect(() => {
-    setFullManagementUrl(`${window.location.origin}${managementPath}`);
-  }, [managementPath]);
+  const origin = useSyncExternalStore(
+    emptySubscribe,
+    () => window.location.origin,
+    () => "",
+  );
+  const fullManagementUrl = origin ? `${origin}${managementPath}` : managementPath;
 
   useEffect(() => {
     if (!copied) return;

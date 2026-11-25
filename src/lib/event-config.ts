@@ -1,7 +1,7 @@
 /**
  * Authoritative Event, Closure, and Data Retention Configuration.
  *
- * Single source of truth for Majala & Florence's Graduation & Thanksgiving
+ * Single source of truth for Majala & Achala's Graduation & Thanksgiving
  * Celebration. All closure and retention enforcement across frontend and
  * backend must derive from this module.
  */
@@ -39,11 +39,11 @@ export const EVENT_DETAILS = {
       degree: "Bachelor's Degree in Education (Mathematics)",
     },
     {
-      name: "Florence Achala Mwaila",
+      name: "Achala Mwaila",
       degree: "Bachelor's Degree in French and Sociology",
     },
   ],
-  graduatesSummary: "Majala & Florence",
+  graduatesSummary: "Majala & Achala",
   dateLabel: "Saturday, 12 December 2026",
   timeLabel: "12:00 PM",
   venueName: "Rainbow Ruiru Resort",
@@ -65,7 +65,7 @@ export const PRIVACY_NOTICE_COPY = {
   title: "Privacy & Data Notice",
   points: [
     "We collect only your full name, phone number, attendance response, optional dietary requirements (if attending), and optional congratulatory message.",
-    "This information is collected solely to coordinate seating, hospitality, and catering for Majala & Florence's Graduation & Thanksgiving Celebration.",
+    "This information is collected solely to coordinate seating, hospitality, and catering for Majala & Achala's Graduation & Thanksgiving Celebration.",
     "Only the event organizers and authorized administrators can access submitted RSVP details; guest responses and attendee lists are never publicly displayed.",
     "You will receive a personal RSVP management link after submitting so you can review or update your response anytime before Saturday, 12 December 2026 at 12:00 AM (Africa/Nairobi).",
     "No email or SMS confirmations or reminders will be sent.",

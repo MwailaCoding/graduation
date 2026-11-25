@@ -32,7 +32,7 @@ export interface GraduateImageAsset extends ImageAsset {
 }
 
 export interface GraduateProfile {
-  readonly id: "majala" | "florence";
+  readonly id: "majala" | "florence" | "achala";
   readonly name: string;
   readonly displayLines: readonly [string, string];
   readonly degree: string;

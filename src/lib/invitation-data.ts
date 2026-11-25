@@ -30,7 +30,7 @@ export const NAV_LINKS: readonly NavLink[] = [
 ] as const;
 
 export const SITE_HEADER_CONTENT: SiteHeaderContent = {
-  brandName: "Majala & Florence",
+  brandName: "Majala & Achala",
   brandHref: "#home",
   links: NAV_LINKS,
   rsvpCta: { label: "RSVP", href: "#rsvp" },
@@ -40,12 +40,12 @@ export const HERO_CONTENT: HeroContent = {
   eyebrow: "YOU ARE CORDIALLY INVITED TO THE",
   titleLines: ["Graduation &", "Thanksgiving", "Celebration"],
   subEyebrow: "OF",
-  graduatesHeading: "Majala & Florence",
+  graduatesHeading: "Majala & Achala",
   invitationCopy:
     "Join us as we celebrate our graduation, give thanks for God's faithfulness, and mark the completion of five years of learning, growth and grace.",
   image: {
     src: HERO_PHOTO_SRC,
-    alt: "Majala and Florence Mwaila seated together in matching patterned ivory and forest-green attire against a soft olive botanical backdrop",
+    alt: "Majala and Achala Mwaila seated together in matching patterned ivory and forest-green attire against a soft olive botanical backdrop",
     width: 853,
     height: 1280,
     objectPosition: "50% 44%",
@@ -60,20 +60,20 @@ export const GRADUATES: readonly [GraduateProfile, GraduateProfile] = [
     degree: "Bachelor's Degree in Education (Mathematics)",
     image: {
       src: "/assets/photos/majala/majala-portrait.jpg",
-      alt: "Majala Mwaila seated on a wooden studio stool wearing a terracotta blazer and white dress",
-      width: 912,
-      height: 1368,
-      objectPosition: "50% 18%",
+      alt: "Majala Mwaila smiling in a patterned green and ivory button-down shirt seated on a studio stool",
+      width: 683,
+      height: 1024,
+      objectPosition: "50% 16%",
     },
   },
   {
-    id: "florence",
-    name: "Florence Achala Mwaila",
-    displayLines: ["Florence", "Achala Mwaila"],
+    id: "achala",
+    name: "Achala Mwaila",
+    displayLines: ["Achala", "Mwaila"],
     degree: "Bachelor's Degree in French and Sociology",
     image: {
       src: "/assets/photos/florence/florence-portrait.jpg",
-      alt: "Florence Achala Mwaila smiling in a terracotta blazer and white dress with gold botanical earrings",
+      alt: "Achala Mwaila smiling in a terracotta blazer and white dress with gold botanical earrings",
       width: 1280,
       height: 1236,
       objectPosition: "50% 14%",
@@ -106,14 +106,14 @@ export const RSVP_CONTENT: RsvpContent = {
   ctaLabel: "RSVP Now \u2192",
   noticeTitle: "RSVP Opening Soon",
   noticeBody:
-    "Online RSVP confirmation for Majala & Florence's Graduation & Thanksgiving Celebration on Saturday, 12 December 2026 at Rainbow Ruiru Resort will open shortly. Thank you for celebrating with us!",
+    "Online RSVP confirmation for Majala & Achala's Graduation & Thanksgiving Celebration on Saturday, 12 December 2026 at Rainbow Ruiru Resort will open shortly. Thank you for celebrating with us!",
   noticeCloseLabel: "Close",
 } as const;
 
 export const THANK_YOU_CONTENT: ThankYouContent = {
   heading: "Thank You",
   copy: "Thank you for being part of our journey. Every prayer, encouragement, sacrifice and expression of love has helped make this day possible. As we celebrate this milestone, we carry with us the people who walked with us, believed in us and reminded us that we were never alone. This celebration is as much yours as it is ours.",
-  signature: "Majala & Florence",
+  signature: "Majala & Achala",
 } as const;
 
 export const DECORATIVE_ASSETS: DecorativeAssets = {
