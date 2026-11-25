@@ -23,3 +23,12 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 Thumbs.db
+
+# Large raw media & uncompressed assets (offloaded to Cloudflare R2 / AWS S3 / CDN)
+assets/*
+!assets/README.md
+!assets/inventory/
+assets/inventory/*
+!assets/inventory/ASSET-INVENTORY.md
+assets/raw/
+assets/heavy-media/

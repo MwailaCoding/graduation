@@ -3,6 +3,28 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Single-application Next.js App Router foundation (SSR + Route Handlers enabled; no static export)
   serverExternalPackages: ["pg"],
+  images: {
+    remotePatterns: [
+      // Cloudflare R2 public buckets / custom domains
+      {
+        protocol: "https",
+        hostname: "**.r2.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "**.r2.cloudflarestorage.com",
+      },
+      // AWS S3 / CloudFront
+      {
+        protocol: "https",
+        hostname: "**.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.cloudfront.net",
+      },
+    ],
+  },
   async headers() {
     return [
       {

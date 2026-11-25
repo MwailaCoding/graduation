@@ -1,0 +1,52 @@
+# ── Docker Build Ignore ──
+# Exclude non-runtime assets, local dependencies, and temporary files
+# to slash build context transfer time from ~140MB down to <2MB.
+
+# Version control
+.git
+.gitignore
+
+# Large raw media and design assets (137 MB uncompressed)
+assets/
+assets/raw/
+assets/heavy-media/
+assets/originals/
+assets/botanical/
+assets/decorative/
+assets/graduation/
+assets/photography/
+assets/textures/
+assets/inventory/
+
+# Tests and test coverage
+tests/
+*.test.*
+*.spec.*
+coverage/
+
+# Documentation and markdown files
+*.md
+database/*.md
+
+# Local dependencies and build artifacts (compiled inside container)
+node_modules
+.next
+out
+build
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and secrets (injected via deployment environment)
+.env*
+!.env.example
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode
+.idea
