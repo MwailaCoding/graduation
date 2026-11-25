@@ -42,9 +42,13 @@ function toIsoString(value: Date | string): string {
 export async function anonymizeExpiredRsvps(options?: {
   now?: Date;
   force?: boolean;
+  targetIds?: string[];
 }): Promise<AnonymizeExpiredResult> {
   const effectiveNow = getAuthoritativeNow(options?.now);
   const force = options?.force === true;
+  const targetIds = Array.isArray(options?.targetIds) && options.targetIds.length > 0
+    ? options.targetIds
+    : null;
   const cutoffIso = effectiveNow.toISOString();
   const client = await pool.connect();
 
@@ -69,8 +73,9 @@ export async function anonymizeExpiredRsvps(options?: {
         updated_at = NOW()
       WHERE is_anonymized = FALSE
         AND ($2::boolean = TRUE OR retention_expires_at <= $1::timestamptz)
+        AND ($3::uuid[] IS NULL OR id = ANY($3::uuid[]))
       `,
-      [cutoffIso, force],
+      [cutoffIso, force, targetIds],
     );
 
     const anonymizedCount = updateResult.rowCount ?? 0;

@@ -357,6 +357,7 @@ describe("Phase 7 PostgreSQL Integration & Retention Tests", () => {
     // 1. Before 2027-03-12 -> records retained
     const beforeExpiry = await anonymizeExpiredRsvps({
       now: new Date("2027-03-11T23:59:59+03:00"),
+      targetIds: [rowId],
     });
     assert.equal(beforeExpiry.status, "success");
     assert.equal(beforeExpiry.anonymizedCount, 0);
@@ -369,12 +370,13 @@ describe("Phase 7 PostgreSQL Integration & Retention Tests", () => {
     assert.equal(stillActive.is_anonymized, false);
     assert.equal(stillActive.full_name, `${TEST_PREFIX} Retention Guest`);
 
-    // 2. At 2027-03-12T00:00:00+03:00 -> irreversibly anonymized
+    // 2. At 2027-03-12T00:00:00+03:00 -> irreversibly anonymized (scoped strictly to rowId)
     const atExpiry = await anonymizeExpiredRsvps({
       now: new Date("2027-03-12T00:00:00+03:00"),
+      targetIds: [rowId],
     });
     assert.equal(atExpiry.status, "success");
-    assert.ok(atExpiry.anonymizedCount >= 1);
+    assert.equal(atExpiry.anonymizedCount, 1);
 
     const anonymizedRow = (
       await pool.query(
