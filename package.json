@@ -2,10 +2,14 @@
   "name": "mwaila-graduation-invitation",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "db:migrate": "node --env-file=.env.local database/migrate.mjs up",
