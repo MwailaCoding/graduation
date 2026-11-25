@@ -63,6 +63,7 @@ export async function anonymizeExpiredRsvps(options?: {
         management_token_hash = NULL,
         idempotency_key = NULL,
         organizer_notes = NULL,
+        duplicate_review_note = NULL,
         is_anonymized = TRUE,
         anonymized_at = NOW(),
         updated_at = NOW()

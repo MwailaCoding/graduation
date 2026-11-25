@@ -5,7 +5,9 @@ export type RateLimitScope =
   | "create"
   | "manage_read"
   | "manage_update"
-  | "manage_failed";
+  | "manage_failed"
+  | "admin_login"
+  | "admin_login_failed";
 
 interface RateLimitPolicy {
   windowSeconds: number;
@@ -32,6 +34,16 @@ const RATE_LIMIT_POLICIES: Record<RateLimitScope, RateLimitPolicy> = {
   manage_failed: {
     windowSeconds: 15 * 60,
     maxRequests: 10,
+    blockSeconds: 15 * 60,
+  },
+  admin_login: {
+    windowSeconds: 15 * 60,
+    maxRequests: 20,
+    blockSeconds: 15 * 60,
+  },
+  admin_login_failed: {
+    windowSeconds: 15 * 60,
+    maxRequests: 5,
     blockSeconds: 15 * 60,
   },
 };

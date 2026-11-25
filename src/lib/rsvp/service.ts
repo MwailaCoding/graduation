@@ -1,11 +1,10 @@
 import type { CountryCode } from "libphonenumber-js";
+import { getEffectiveRsvpPolicy } from "@/lib/admin/settings";
 import { pool } from "@/lib/db";
 import {
   CLOSED_RSVP_COPY,
   RETENTION_ANONYMIZATION_DATE_ISO,
-  RSVP_CLOSURE_DEADLINE_ISO,
   getAuthoritativeNow,
-  isRsvpClosed,
 } from "@/lib/event-config";
 import {
   generateManagementToken,
@@ -93,12 +92,14 @@ function mapRowToGuestSummary(row: RsvpRow): RsvpGuestSummary {
 /**
  * Returns the authoritative RSVP closure and retention status.
  */
-export function getRsvpPublicStatus(now?: Date): RsvpStatusResponse {
-  const effectiveNow = getAuthoritativeNow(now);
+export async function getRsvpPublicStatus(
+  now?: Date,
+): Promise<RsvpStatusResponse> {
+  const policy = await getEffectiveRsvpPolicy({ now });
   return {
     ok: true,
-    isClosed: isRsvpClosed(effectiveNow),
-    closureDeadlineIso: RSVP_CLOSURE_DEADLINE_ISO,
+    isClosed: !policy.isAcceptingNewRsvps,
+    closureDeadlineIso: policy.closureDeadlineIso,
     retentionDateIso: RETENTION_ANONYMIZATION_DATE_ISO,
   };
 }
@@ -115,8 +116,9 @@ export async function createRsvp(
   body: CreateRsvpSuccessResponse | RsvpErrorResponse;
 }> {
   const effectiveNow = getAuthoritativeNow(options?.now);
+  const policy = await getEffectiveRsvpPolicy({ now: effectiveNow });
 
-  if (isRsvpClosed(effectiveNow)) {
+  if (!policy.isAcceptingNewRsvps) {
     return {
       status: 403,
       body: {
@@ -270,7 +272,7 @@ export async function createRsvp(
         ok: true,
         rsvp: mapRowToGuestSummary(row),
         managementPath: `/rsvp/manage/${managementToken}`,
-        closureDeadlineIso: RSVP_CLOSURE_DEADLINE_ISO,
+        closureDeadlineIso: policy.closureDeadlineIso,
       },
     };
   } catch (err) {
@@ -338,6 +340,7 @@ export async function getRsvpByToken(
   }
 
   const effectiveNow = getAuthoritativeNow(options?.now);
+  const policy = await getEffectiveRsvpPolicy({ now: effectiveNow });
   const tokenHash = hashManagementToken(token);
 
   try {
@@ -381,8 +384,8 @@ export async function getRsvpByToken(
       data: {
         ok: true,
         rsvp: mapRowToGuestSummary(row),
-        isClosed: isRsvpClosed(effectiveNow),
-        closureDeadlineIso: RSVP_CLOSURE_DEADLINE_ISO,
+        isClosed: !policy.isSelfEditingAllowed,
+        closureDeadlineIso: policy.closureDeadlineIso,
         retentionDateIso: RETENTION_ANONYMIZATION_DATE_ISO,
       },
     };
@@ -456,14 +459,19 @@ export async function updateRsvpByToken(
       };
     }
 
-    if (isRsvpClosed(effectiveNow)) {
+    const policy = await getEffectiveRsvpPolicy({ now: effectiveNow });
+    if (!policy.isSelfEditingAllowed) {
       await client.query("ROLLBACK");
+      const closedMessage =
+        !policy.isDeadlinePassed && !policy.allowGuestSelfEditing
+          ? "Self-service RSVP editing is currently disabled by the event organizers. Please contact the event hosts for assistance."
+          : `${CLOSED_RSVP_COPY.heading} ${CLOSED_RSVP_COPY.body}`;
       return {
         status: 403,
         body: {
           ok: false,
           code: "RSVP_CLOSED",
-          message: `${CLOSED_RSVP_COPY.heading} ${CLOSED_RSVP_COPY.body}`,
+          message: closedMessage,
         },
       };
     }
@@ -573,7 +581,7 @@ export async function updateRsvpByToken(
         ok: true,
         rsvp: mapRowToGuestSummary(updatedRow),
         isClosed: false,
-        closureDeadlineIso: RSVP_CLOSURE_DEADLINE_ISO,
+        closureDeadlineIso: policy.closureDeadlineIso,
       },
     };
   } catch (err) {

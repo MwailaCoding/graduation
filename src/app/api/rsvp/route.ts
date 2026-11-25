@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const status = getRsvpPublicStatus();
+    const status = await getRsvpPublicStatus();
     return jsonNoStore(status, 200);
   } catch {
     return jsonNoStore(

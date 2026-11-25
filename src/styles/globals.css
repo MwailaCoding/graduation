@@ -49,3 +49,20 @@ body {
   background-size: auto, 600px 400px;
   background-repeat: repeat;
 }
+
+@media print {
+  .admin-no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #193C2F !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}

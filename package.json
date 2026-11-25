@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "node --env-file=.env.local database/migrate.mjs up",
     "db:migrate:down": "node --env-file=.env.local database/migrate.mjs down",
-    "rsvp:anonymize": "node --env-file=.env.local database/anonymize.mjs"
+    "rsvp:anonymize": "node --env-file=.env.local database/anonymize.mjs",
+    "admin:bootstrap": "node database/bootstrap-admin.mjs"
   },
   "dependencies": {
     "libphonenumber-js": "^1.13.17",

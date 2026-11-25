@@ -5,13 +5,14 @@ import { RsvpSection } from "@/components/sections/RsvpSection";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { ThankYouSection } from "@/components/sections/ThankYouSection";
 import { VenueSection } from "@/components/sections/VenueSection";
-import { isRsvpClosed } from "@/lib/event-config";
+import { getEffectiveRsvpPolicy } from "@/lib/admin/settings";
 import { ensureRetentionEnforcedIfDue } from "@/lib/rsvp/retention";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const rsvpClosed = isRsvpClosed();
+  const policy = await getEffectiveRsvpPolicy();
+  const rsvpClosed = !policy.isAcceptingNewRsvps;
   await ensureRetentionEnforcedIfDue().catch((err) => {
     console.error(
       "[rsvp-retention] Opportunistic retention check error:",
